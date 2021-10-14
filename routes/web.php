@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('home.home');
 })->name('root');
 
+Route::get('/supervisor' , [supervisor_controller::class, 'index']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
