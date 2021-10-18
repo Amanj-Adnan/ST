@@ -9,7 +9,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('create_supervisor') }}">
             @csrf
 
             <!-- Name -->
@@ -18,6 +18,25 @@
 
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             </div>
+
+                <div>
+                    <x-label for="university" :value="__('University')" />
+
+                    <x-input id="university" class="block mt-1 w-full" type="text" name="university" :value="old('university')" required autofocus />
+                </div>
+
+                <div>
+                    <x-label for="college" :value="__('College')" />
+
+                    <x-input id="college" class="block mt-1 w-full" type="text" name="college" :value="old('college')" required autofocus />
+                </div>
+
+
+                <div>
+                    <x-label for="department" :value="__('Department')" />
+
+                    <x-input id="department" class="block mt-1 w-full" type="text" name="department" :value="old('department')" required autofocus />
+                </div>
 
             <!-- Email Address -->
             <div class="mt-4">

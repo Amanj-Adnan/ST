@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\job_place_controller;
+use App\Http\Controllers\supervisor_controller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +19,19 @@ Route::get('/', function () {
     return view('home.home');
 })->name('root');
 
-Route::get('/supervisor' , [supervisor_controller::class, 'index']);
+Route::get('/supervisor' , [supervisor_controller::class, 'create'])->name('create_supervisor');
+Route::post('/supervisor' , [supervisor_controller::class, 'store']);
+Route::get('/supervisor/{supervisor}' , [supervisor_controller::class, 'show'])->name('show_supervisor');
+
+Route::get('/job_place' , [job_place_controller::class, 'create'])->name('create_place');
+Route::post('/job_place' , [job_place_controller::class, 'store']);
+Route::get('/job_place/{job_place}' , [job_place_controller::class, 'show'])->name('show_place');
+
+
+
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

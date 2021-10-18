@@ -3,5 +3,7 @@
 @section('content')
     <p>hello ther</p>
 
-    <a href="{{}}"></a>
+    <a href="{{route('create_supervisor')}}">hello mather fathar </a>
+
+    <a href="{{route('create_place')}}">hello </a>
 @endsection

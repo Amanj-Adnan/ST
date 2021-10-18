@@ -15,9 +15,9 @@ class CreateJobPlacesTable extends Migration
     {
         Schema::create('job_places', function (Blueprint $table) {
             $table->id();
-             
+
               $table->string('type');
-            $table->string('pleace');
+            $table->string('place');
             $table->timestamps();
         });
     }
