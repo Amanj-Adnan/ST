@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\job_place_controller;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\supervisor_controller;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,10 @@ Route::get('/supervisor/{supervisor}' , [supervisor_controller::class, 'show'])-
 Route::get('/job_place' , [job_place_controller::class, 'create'])->name('create_place');
 Route::post('/job_place' , [job_place_controller::class, 'store']);
 Route::get('/job_place/{job_place}' , [job_place_controller::class, 'show'])->name('show_place');
+
+
+
+Route::get('/student/create' , [StudentController::class, 'create'])->name('create_student');
 
 
 

@@ -32,6 +32,20 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+       $user = $request->user();
+       $user_type = ($user->profile_type);
+
+        if($user_type == 'App\Models\Supervisor'){
+
+
+            return redirect(route('show_supervisor' , $user));
+
+        }else{
+
+            return redirect(route('show_place' , $user));
+
+        }
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

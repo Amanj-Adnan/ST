@@ -23,4 +23,10 @@ class Supervisor extends Model
   {
     return $this->morphOne(User::class, 'profile');
   }
+
+
+    public function student()
+    {
+        return $this->hasMany(Student::class);
+    }
 }
