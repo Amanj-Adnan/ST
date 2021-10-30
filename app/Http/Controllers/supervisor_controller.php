@@ -22,6 +22,8 @@ class supervisor_controller extends Controller
 
     public function show(Supervisor  $supervisor){
 
+//         dd($supervisor->student->all());
+
         return view('supervisor.show', [
             'supervisor' => $supervisor,
         ]);

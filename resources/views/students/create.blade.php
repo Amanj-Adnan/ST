@@ -9,7 +9,7 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('create_supervisor') }}">
+        <form method="POST" action="{{ route('post_student') }}">
         @csrf
 
         <!-- Name -->

@@ -20,7 +20,7 @@ class StudentController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
@@ -31,11 +31,11 @@ class StudentController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-
+        $user = $request->user();
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'university' => ['required', 'string', 'max:255'],
@@ -44,14 +44,17 @@ class StudentController extends Controller
 
         ]);
 
+
         $student = Student::create([
+            'supervisor_id' => $request->user()->profile_id,
             'name' => $request->name,
             'university' => $request->university,
             'college' => $request->college,
             'department' => $request->department,
         ]);
 
-           return redirect(route('show_supervisor' , $student));
+
+           return redirect(route('show_supervisor' , $user));
     }
 
     /**
@@ -62,7 +65,9 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        return view('students.show', [
+            'student' => $student,
+        ]);
     }
 
     /**

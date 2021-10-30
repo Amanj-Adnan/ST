@@ -14,7 +14,20 @@
 
     <p> create  a  student</p>
 
-    <a href="{{route('create_student')}}">create student </a>
+    <a href="{{route('create_student' , $supervisor)}}">create student </a>
+
+
+
+          @foreach ($supervisor->student->all() as $student)
+
+            <div class="text-2xl font-bold ">
+                <a href="{{route( 'student.show' , $student)}}">{{ $student->name }}</a>
+            </div>
+
+
+          @endforeach
+
+
 
 
 @endsection

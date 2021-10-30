@@ -30,8 +30,13 @@ Route::get('/job_place/{job_place}' , [job_place_controller::class, 'show'])->na
 
 
 
-Route::get('/student/create' , [StudentController::class, 'create'])->name('create_student');
+Route::get('/supervisor/student/create' , [StudentController::class, 'create'])->name('create_student');
+Route::post('/student' , [StudentController::class, 'store'])->name('post_student');
+Route::get('/student/{student}' , [StudentController::class, 'show'])->name('student.show');
 
+Route::get('/form', function () {
+    return view('request_forms.create');
+})->name('form');
 
 
 

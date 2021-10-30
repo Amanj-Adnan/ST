@@ -10,6 +10,7 @@ class Student extends Model
     use HasFactory;
 
     protected $fillable = [
+        'supervisor_id',
         'name' ,
         'college',
         'university',
@@ -17,6 +18,10 @@ class Student extends Model
 
     ];
 
+    public function request()
+    {
+        return $this->hasMany(RequestForm::class);
+    }
 
 
     public function supervisor()
