@@ -21,7 +21,7 @@
           @foreach ($supervisor->student->all() as $student)
 
             <div class="text-2xl font-bold ">
-                <a href="{{route( 'student.show' , $student)}}">{{ $student->name }}</a>
+                <a href="{{route( 'student.show' , [$supervisor , $student])}}">{{ $student->name }}</a>
             </div>
 
 

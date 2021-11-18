@@ -1,8 +1,11 @@
 <?php
 
+use App\Http\Controllers\AcceptFormController;
 use App\Http\Controllers\job_place_controller;
+use App\Http\Controllers\RequestFormController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\supervisor_controller;
+use App\Models\RequestForm;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,20 +26,27 @@ Route::get('/', function () {
 Route::get('/supervisor' , [supervisor_controller::class, 'create'])->name('create_supervisor');
 Route::post('/supervisor' , [supervisor_controller::class, 'store']);
 Route::get('/supervisor/{supervisor}' , [supervisor_controller::class, 'show'])->name('show_supervisor');
+Route::get('/supervisor/{supervisor}/student/create' , [StudentController::class, 'create'])->name('create_student');
+Route::post('/student' , [StudentController::class, 'store'])->name('post_student');
+Route::get('/supervisor/{supervisor}/student/{student}' , [StudentController::class, 'show'])->name('student.show');
+Route::get('/supervisor/{supervisor}/student/{student}/form/crate',[RequestFormController::class , 'create'])->name('form');
+Route::post('/supervisor/{supervisor}/student/{student}/form',[RequestFormController::class , 'store'])->name('form.store');
+Route::delete('/form/{id}/{place}',[RequestFormController::class , 'destroy'])->name('form.delete');
+
 
 Route::get('/job_place' , [job_place_controller::class, 'create'])->name('create_place');
 Route::post('/job_place' , [job_place_controller::class, 'store']);
 Route::get('/job_place/{job_place}' , [job_place_controller::class, 'show'])->name('show_place');
+Route::get('/job_place/{job_place}/student/{id}/accept_form' , [AcceptFormController::class, 'create'])->name('accept.create');
 
 
 
-Route::get('/supervisor/student/create' , [StudentController::class, 'create'])->name('create_student');
-Route::post('/student' , [StudentController::class, 'store'])->name('post_student');
-Route::get('/student/{student}' , [StudentController::class, 'show'])->name('student.show');
 
-Route::get('/form', function () {
-    return view('request_forms.create');
-})->name('form');
+
+
+
+
+
 
 
 

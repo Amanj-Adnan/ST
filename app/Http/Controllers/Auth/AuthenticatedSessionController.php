@@ -38,11 +38,11 @@ class AuthenticatedSessionController extends Controller
         if($user_type == 'App\Models\Supervisor'){
 
 
-            return redirect(route('show_supervisor' , $user));
+            return redirect(route('show_supervisor' , $user->profile_id));
 
         }else{
 
-            return redirect(route('show_place' , $user));
+            return redirect(route('show_place' , $user->profile_id));
 
         }
 

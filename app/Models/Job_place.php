@@ -22,4 +22,15 @@ class Job_place extends Model
   {
     return $this->morphOne(User::class, 'profile');
   }
+
+
+    public function request()
+    {
+        return $this->hasMany(RequestForm::class);
+    }
+
+    public function accept()
+    {
+        return $this->hasMany(AcceptForm::class);
+    }
 }

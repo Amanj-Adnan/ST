@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Job_place;
+use App\Models\RequestForm;
 use App\Models\Student;
+use App\Models\Supervisor;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -35,6 +38,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+
         $user = $request->user();
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -63,10 +67,36 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show(Supervisor $supervisor ,Student $student)
     {
+        $names = null ;
+        $requsts= RequestForm::with('student')->where('student_id', $student->id)->get();
+        $subsets = $requsts->map(function ($requests) {
+            return collect($requests->toArray())
+                ->only(['job_place_id'])
+                ->all();
+        });
+
+
+
+
+
+        for ($i = 0; $i < count($subsets); $i++) {
+
+            $place_id = $subsets[$i]['job_place_id'];
+            $places = Job_place::find($place_id);
+            $names[] = $places->user->name;
+
+        }
+
+
+
+
+
         return view('students.show', [
             'student' => $student,
+            'supervisor' => $supervisor,
+            'names' => $names
         ]);
     }
 

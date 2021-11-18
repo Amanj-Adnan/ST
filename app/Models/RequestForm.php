@@ -10,7 +10,9 @@ class RequestForm extends Model
     use HasFactory;
 
     protected $fillable = [
-        'number',
+        'student_id',
+        'job_place_id',
+        'serial_no',
         'start_date',
         'end_date'
 
@@ -18,5 +20,10 @@ class RequestForm extends Model
     public function student()
     {
         return $this->belongsTo(Student::class);
+    }
+
+    public function job_place()
+    {
+        return $this->belongsTo(Job_place::class);
     }
 }

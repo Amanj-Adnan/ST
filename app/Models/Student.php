@@ -28,4 +28,9 @@ class Student extends Model
     {
         return $this->belongsTo(Supervisor::class);
     }
+
+    public function accept()
+    {
+        return $this->hasMany(AcceptForm::class);
+    }
 }

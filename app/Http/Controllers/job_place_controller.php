@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Job_place;
+use App\Models\RequestForm;
+use App\Models\Student;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -19,10 +21,52 @@ class job_place_controller extends Controller
 
     }
 
-    public function show(Job_place  $place){
+    public function show(Job_place  $job_place){
+
+        $ruquests = null ;
+        $student_forms= null ;
+        $request_forms= RequestForm::with('job_place')->where('job_place_id', $job_place->id)->get();
+
+
+        $subsets = $request_forms->map(function ($requests) {
+            return collect($requests->toArray())
+                ->only(['student_id'])
+                ->all();
+        });
+
+
+        $forms = $request_forms->map(function ($requests) {
+            return collect($requests->toArray())
+                ->only(['id'])
+                ->all();
+        });
+
+
+        for ($i = 0; $i < count($forms); $i++) {
+
+            $form_id = $forms[$i]['id'];
+            $student_forms[] = $form_id;
+
+        }
+
+
+
+
+
+        for ($i = 0; $i < count($subsets); $i++) {
+
+            $student_id = $subsets[$i]['student_id'];
+            $student = Student::find($student_id);
+            $ruquests[] = $student->name;
+
+        }
+//        dd($student_forms);
+//        dd($ruquests);
 
         return view('job_place.show', [
-            'place' => $place,
+            'place' => $job_place,
+            'ruquests' => $ruquests,
+            'student_forms' =>$student_forms
         ]);
 
     }
