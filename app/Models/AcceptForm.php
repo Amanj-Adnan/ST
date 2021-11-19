@@ -22,4 +22,10 @@ class AcceptForm extends Model
     {
         return $this->belongsTo(Student::class);
     }
+
+
+    public function timetable()
+    {
+        return $this->hasMany(TimeTable::class);
+    }
 }

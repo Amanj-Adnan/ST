@@ -28,17 +28,17 @@
             </div>
 
             <div class="px-6 mt-1 text-lg">
-                <span class="font-bold">From :</span> Company Name
+                <span class="font-bold">From :</span> {{$place->user->name}}
             </div>
 
             <div class="px-6 mt-1 text-lg">
-                <span class="font-bold">Address :</span> City
+                <span class="font-bold">Address :</span> {{$place->place}}
             </div>
 
 
 
             <div class="px-6 mt-16 text-lg">
-                <span class="font-bold">Dear,</span> Student Name
+                <span class="font-bold">Dear,</span> {{$student}}
                 <div class="mt-3">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
                     when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
@@ -63,7 +63,8 @@
                 </div>
 
                 <div class="flex justify-center mt-16">
-                    <form action="">
+                    <form method="POST" action="{{ route('accept.store' ,[$place->id , $request_form_id]) }}">
+                        @csrf
                         <button type="submit" class="inline-block rounded-md mx-1 text-lg font-semibold py-2 px-4 text-white bg-green-700">
                             Submit
                         </button>

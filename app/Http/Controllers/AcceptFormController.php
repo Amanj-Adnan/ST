@@ -3,81 +3,93 @@
 namespace App\Http\Controllers;
 
 use App\Models\AcceptForm;
+use App\Models\Job_place;
+use App\Models\RequestForm;
+use DateInterval;
+use DatePeriod;
 use Illuminate\Http\Request;
+use Nette\Utils\DateTime;
 
 class AcceptFormController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+
+
+    public function create($place_id , $request_form_id , $student_name)
     {
-        //
+        $place = Job_place::find($place_id);
+
+
+       return view('accept_form.create',[
+           'student'=>$student_name,
+           'request_form_id'=>$request_form_id,
+           'place'=>$place
+
+           ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+
+
+
+
+
+
+
+    public function store($place , $request_form_id)
     {
-       return view('accept_form.create');
+        $request_form= RequestForm::find($request_form_id);
+        $student_id= $request_form->student_id;
+        $start_date=$request_form->start_date;
+
+        $end_date=$request_form->end_date;
+
+
+        $interval = DateInterval::createFromDateString ('1 days') ;
+
+        $daterange = new DatePeriod(new DateTime($start_date), $interval, new DateTime($end_date)) ;
+         $a=null;
+        foreach($daterange as $date){
+            $a[] = $date->format("Y-m-d") ;
+        }
+        dd($a);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\AcceptForm  $acceptForm
-     * @return \Illuminate\Http\Response
-     */
+
+
+
+
+
     public function show(AcceptForm $acceptForm)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\AcceptForm  $acceptForm
-     * @return \Illuminate\Http\Response
-     */
+
+
+
+
+
     public function edit(AcceptForm $acceptForm)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\AcceptForm  $acceptForm
-     * @return \Illuminate\Http\Response
-     */
+
+
+
+
+
     public function update(Request $request, AcceptForm $acceptForm)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\AcceptForm  $acceptForm
-     * @return \Illuminate\Http\Response
-     */
+
+
+
+
     public function destroy(AcceptForm $acceptForm)
     {
         //

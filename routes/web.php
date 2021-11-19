@@ -5,6 +5,7 @@ use App\Http\Controllers\job_place_controller;
 use App\Http\Controllers\RequestFormController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\supervisor_controller;
+use App\Http\Controllers\TimeTableController;
 use App\Models\RequestForm;
 use Illuminate\Support\Facades\Route;
 
@@ -37,7 +38,16 @@ Route::delete('/form/{id}/{place}',[RequestFormController::class , 'destroy'])->
 Route::get('/job_place' , [job_place_controller::class, 'create'])->name('create_place');
 Route::post('/job_place' , [job_place_controller::class, 'store']);
 Route::get('/job_place/{job_place}' , [job_place_controller::class, 'show'])->name('show_place');
-Route::get('/job_place/{job_place}/student/{id}/accept_form' , [AcceptFormController::class, 'create'])->name('accept.create');
+Route::get('/job_place/{job_place}/request_form/{id}/student/{name}/accept_form' , [AcceptFormController::class, 'create'])->name('accept.create');
+Route::post('/job_place/{job_place}/request_form/{id}/accept_form' , [AcceptFormController::class, 'store'])->name('accept.store');
+
+
+
+
+
+Route::get('/time_table' , [TimeTableController::class, 'show'])->name('time_table.show');
+
+
 
 
 

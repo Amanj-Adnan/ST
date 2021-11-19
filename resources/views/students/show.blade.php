@@ -15,6 +15,11 @@
             <div>
                 <a  href="{{route('form'  , [$supervisor , $student])}}" class="text-blue-900 font-bold"> Send Request </a>
             </div>
+
+
+            <div>
+                <a  href="{{route('time_table.show')}}" class="text-blue-900 text-xl font-bold"> time table </a>
+            </div>
         </div>
 
         <div class="m-3">

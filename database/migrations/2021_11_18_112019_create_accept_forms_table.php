@@ -15,7 +15,11 @@ class CreateAcceptFormsTable extends Migration
     {
         Schema::create('accept_forms', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('student_id')->unsigned();
+            $table->unsignedBigInteger('job_place_id')->unsigned();
             $table->timestamps();
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->foreign('job_place_id')->references('id')->on('job_places')->onDelete('cascade');
         });
     }
 

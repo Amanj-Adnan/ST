@@ -30,7 +30,7 @@
                         <div class="mt-3 flex  justify-center">
 
                                 <span class="inline-block rounded-md text-lg font-semibold py-2 mx-1 px-4 text-white bg-green-700">
-                                     <a href="{{route('accept.create', [$place , $student_forms[$loop->index] ])}}">Accept</a>
+                                     <a href="{{route('accept.create', [$place , $student_forms[$loop->index] , $request ])}}">Accept</a>
                                 </span>
 
 
