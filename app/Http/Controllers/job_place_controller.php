@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\AcceptForm;
 use App\Models\Job_place;
 use App\Models\RequestForm;
 use App\Models\Student;
@@ -61,12 +62,17 @@ class job_place_controller extends Controller
 
         }
 //        dd($student_forms);
-//        dd($ruquests);
+          $accept_form_array= AcceptForm::with('job_place' , 'student')->where('job_place_id' , $job_place->id)->get()->toArray();
+          $accept_form= AcceptForm::with('job_place' , 'student')->where('job_place_id' , $job_place->id)->get();
+
+//         dd($accept_form_array[0]['student']['name']);
+//          dd($accept_form[0]['student']['name']);
 
         return view('job_place.show', [
             'place' => $job_place,
             'ruquests' => $ruquests,
-            'student_forms' =>$student_forms
+            'student_forms' =>$student_forms,
+            'accept_form'=> $accept_form
         ]);
 
     }

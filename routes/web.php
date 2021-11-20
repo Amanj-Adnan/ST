@@ -30,6 +30,11 @@ Route::get('/supervisor/{supervisor}' , [supervisor_controller::class, 'show'])-
 Route::get('/supervisor/{supervisor}/student/create' , [StudentController::class, 'create'])->name('create_student');
 Route::post('/student' , [StudentController::class, 'store'])->name('post_student');
 Route::get('/supervisor/{supervisor}/student/{student}' , [StudentController::class, 'show'])->name('student.show');
+
+Route::get('/supervisor/{supervisor}/student/{student}/time_table/{accepted_form}' , [TimeTableController::class, 'show'])->name('time_table.show');
+
+
+
 Route::get('/supervisor/{supervisor}/student/{student}/form/crate',[RequestFormController::class , 'create'])->name('form');
 Route::post('/supervisor/{supervisor}/student/{student}/form',[RequestFormController::class , 'store'])->name('form.store');
 Route::delete('/form/{id}/{place}',[RequestFormController::class , 'destroy'])->name('form.delete');
@@ -38,6 +43,10 @@ Route::delete('/form/{id}/{place}',[RequestFormController::class , 'destroy'])->
 Route::get('/job_place' , [job_place_controller::class, 'create'])->name('create_place');
 Route::post('/job_place' , [job_place_controller::class, 'store']);
 Route::get('/job_place/{job_place}' , [job_place_controller::class, 'show'])->name('show_place');
+
+Route::get('/job_place/{job_place}/time_table/{accepted_form}/student/{student}' , [TimeTableController::class, 'edit'])->name('time_table.edit');
+Route::put('/date/{id}/status/{status}' , [TimeTableController::class, 'update'])->name('time_table.update');
+
 Route::get('/job_place/{job_place}/request_form/{id}/student/{name}/accept_form' , [AcceptFormController::class, 'create'])->name('accept.create');
 Route::post('/job_place/{job_place}/request_form/{id}/accept_form' , [AcceptFormController::class, 'store'])->name('accept.store');
 
@@ -45,7 +54,7 @@ Route::post('/job_place/{job_place}/request_form/{id}/accept_form' , [AcceptForm
 
 
 
-Route::get('/time_table' , [TimeTableController::class, 'show'])->name('time_table.show');
+
 
 
 

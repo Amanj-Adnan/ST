@@ -9,7 +9,12 @@ class AcceptForm extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
 
+        'student_id',
+        'job_place_id'
+
+    ];
 
 
 

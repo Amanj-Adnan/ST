@@ -12,6 +12,17 @@
             <p>JobPlace Profile </p>
 
             <p >{{$place->user->name}}</p>
+             <div class="  text-blue-500">
+                 <div class=" mt-2  text-gray-900">Our Students</div>
+                 <div class="ml-6 mt-2">
+                     @foreach ($accept_form as $object)
+                        <div>
+                            <a href="{{route('time_table.edit' , [$place->user->name , $object , $object->student->name])}}"> {{ $object->student->name }} </a>
+                        </div>
+                     @endforeach
+                 </div>
+
+             </div>
         </div>
 
 

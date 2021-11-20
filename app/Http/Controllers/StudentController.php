@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AcceptForm;
 use App\Models\Job_place;
 use App\Models\RequestForm;
 use App\Models\Student;
@@ -91,12 +92,20 @@ class StudentController extends Controller
 
 
 
+        $accept_form=AcceptForm::with('student')->where('student_id', $student->id)->first();
+        $accepted_place = null;
+       if($accept_form != null){
+           $accepted_place = Job_place::find($accept_form->job_place_id);
+       }
+
 
 
         return view('students.show', [
             'student' => $student,
             'supervisor' => $supervisor,
-            'names' => $names
+            'names' => $names,
+            'accepted_place'=>$accepted_place,
+            'accept_form'=>$accept_form
         ]);
     }
 

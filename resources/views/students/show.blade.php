@@ -16,10 +16,12 @@
                 <a  href="{{route('form'  , [$supervisor , $student])}}" class="text-blue-900 font-bold"> Send Request </a>
             </div>
 
-
+            @if($accepted_place != null )
             <div>
-                <a  href="{{route('time_table.show')}}" class="text-blue-900 text-xl font-bold"> time table </a>
+                <a  href="{{route('time_table.show', [$supervisor , $student , $accept_form])}}" class="text-blue-900 text-xl font-bold"> Student accepted by <span class="text-blue-500 font-bold">{{$accepted_place->user->name}}</span> click to time table </a>
             </div>
+            @endif
+
         </div>
 
         <div class="m-3">
