@@ -1,14 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
-
-
-
-
-
-
-            @if($accepted_place != null )
+    @if($accepted_place != null )
             <div>
                 <a  href="{{route('time_table.show', [$supervisor , $student , $accept_form])}}" class="text-blue-900 text-xl font-bold"> Student accepted by <span class="text-blue-500 font-bold">{{$accepted_place->user->name}}</span> click to time table </a>
             </div>
@@ -16,7 +9,7 @@
 
 
 
-        <div class="m-3">
+        <div class="">
             @if($names != null )
 
                 @foreach ($names as $name)
