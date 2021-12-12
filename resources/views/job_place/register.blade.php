@@ -20,8 +20,12 @@
             </div>
                 <div>
                     <x-label for="type" :value="__('Type')" />
+                    <select id="type" class="block mt-1 w-full" type="text" name="type" required autofocus>
 
-                    <x-input id="type" class="block mt-1 w-full" type="text" name="type" :value="old('type')" required autofocus />
+                        <option value="Private">Private</option>
+                        <option value="Public" selected="selected">Public</option>
+                    </select>
+
                 </div>
 
                 <div>

@@ -33,11 +33,11 @@
                             @auth
                                 <form method="POST" action="{{ route('logout') }}" >
                                     @csrf
-                                <button  class="text-sm py-2 px-4 text-gray-700 hover:text-gray-200 dark:text-gray-500 underline">Log out</button>
+                                <button  class="text-sm py-2 px-4 text-blue-700 hover:text-gray-200 dark:text-gray-500 no-underline font-bold uppercase    ">Log out</button>
 
                                 </form>
                             @else
-                                <a href="{{ route('login') }}" class="text-sm py-2 px-4 text-gray-700 hover:text-gray-200 dark:text-gray-500 underline">Log in</a>
+                                <a href="{{ route('login') }}" class="text-sm py-2 px-4 text-blue-700 hover:text-gray-200 dark:text-gray-500 no-underline font-bold uppercase">Log in</a>
 
 
 
