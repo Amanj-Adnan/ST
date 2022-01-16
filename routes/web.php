@@ -56,24 +56,22 @@ Route::post('/job_place/{job_place}/request_form/{id}/accept_form' , [AcceptForm
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
