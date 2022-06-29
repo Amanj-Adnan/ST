@@ -59,7 +59,7 @@ class StudentController extends Controller
         ]);
 
 
-           return redirect(route('show_supervisor' , $user));
+           return redirect(route('show_supervisor' , $user->profile_id));
     }
 
     /**
